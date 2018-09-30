@@ -1,2 +1,2 @@
 # CleanUIKit
-A collection of helpers to make it easier to work with UIKit
+Clean hepers for easier working with UIKit
