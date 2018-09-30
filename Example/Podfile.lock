@@ -1,0 +1,16 @@
+PODS:
+  - CleanUIKit (1.0.0)
+
+DEPENDENCIES:
+  - CleanUIKit (from `../`)
+
+EXTERNAL SOURCES:
+  CleanUIKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CleanUIKit: 11f818349f084ed0c9fa84a16de3e72f56430b1d
+
+PODFILE CHECKSUM: 553d30bcd26bb32562f185b1229467dc17023ab1
+
+COCOAPODS: 1.5.3
