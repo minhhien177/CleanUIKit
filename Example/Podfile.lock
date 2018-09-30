@@ -1,8 +1,14 @@
 PODS:
   - CleanUIKit (1.0.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
   - CleanUIKit (from `../`)
+  - SnapKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SnapKit
 
 EXTERNAL SOURCES:
   CleanUIKit:
@@ -10,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CleanUIKit: 11f818349f084ed0c9fa84a16de3e72f56430b1d
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 553d30bcd26bb32562f185b1229467dc17023ab1
+PODFILE CHECKSUM: 54cdfa5f1c2f8b70559c7ff8a9095859f038682a
 
 COCOAPODS: 1.5.3

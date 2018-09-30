@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import CleanUIKit
+import SnapKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+
+  private let label: UILabel = create { label in
+    label.text = "Hello World!"
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    view.addSubview(label)
+    label.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
   }
-
 
 }
 
