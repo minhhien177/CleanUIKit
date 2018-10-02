@@ -12,7 +12,7 @@ import SnapKit
 
 final class TitleTableViewCell: UITableViewCell {
 
-  private lazy var titleLabel: UILabel = create(superview: contentView) { label in
+  private lazy var titleLabel: UILabel = contentView.clean.add { label in
     label.snp.makeConstraints { make in
       make.edges.equalToSuperview().inset(16)
     }
@@ -20,8 +20,6 @@ final class TitleTableViewCell: UITableViewCell {
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-    titleLabel.clean.appear()
   }
 
   required init?(coder aDecoder: NSCoder) {

@@ -3,27 +3,31 @@
 //  CleanUIKit
 //
 //  Created by Hien Vo Minh on 1/10/18.
+//  Copyright © 2018 vomh. All rights reserved.
 //
 
-import UIKit
+public protocol CleanCompatible {}
+extension UIView: CleanCompatible { }
 
-public func create<T>(superview: UIView, _ setup: ((T) -> Void)) -> T where T: UIView {
-  let view = T()
-  superview.addSubview(view)
-  setup(view)
-  return view
-}
-
-public extension UIView {
-  var clean: CleanUIViewHelper {
-    return CleanUIViewHelper(view: self)
+public extension CleanCompatible {
+  public var clean: CleanViewHelper<Self> {
+    return CleanViewHelper(view: self)
   }
 }
 
-public struct CleanUIViewHelper {
-  let view: UIView
+public struct CleanViewHelper<T> {
+  let view: T
+}
 
-  public func appear(duration: TimeInterval = 0) {
+extension CleanViewHelper where T: UIView {
+  public func add<T>(_ setup: Setup<T>? = nil) -> T where T: UIView {
+    return create { [unowned view] (subview: T) in
+      view.addSubview(subview)
+      setup?(subview)
+    }
+  }
+
+  public func show(duration: TimeInterval = 0) {
     view.isHidden = false
     if duration > 0 {
       view.alpha = 0
@@ -33,7 +37,7 @@ public struct CleanUIViewHelper {
     }
   }
 
-  public func disappear(duration: TimeInterval = 0) {
+  public func hide(duration: TimeInterval = 0) {
     if duration > 0 {
       UIView.animate(withDuration: duration, animations: {
         self.view.alpha = 0

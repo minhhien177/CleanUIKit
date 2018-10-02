@@ -12,8 +12,8 @@ import SnapKit
 
 final class TableViewExampleViewController: UIViewController {
 
-  private lazy var tableView: UITableView = create(superview: view, target: self) { tableView in
-    tableView.reuse.registerAll(TitleTableViewCell.self,
+  private lazy var tableView: UITableView = view.clean.add { tableView in
+    tableView.clean.registerAll(TitleTableViewCell.self,
                                 SubtitleTableViewCell.self)
     tableView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
@@ -22,7 +22,7 @@ final class TableViewExampleViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.reloadData()
+    tableView.clean.set(target: self)
   }
 
 }
@@ -36,9 +36,9 @@ extension TableViewExampleViewController: UITableViewDataSource, UITableViewDele
     let random = Int(arc4random())
     let title = String(random)
     if random % 2 == 0 {
-      return tableView.reuse.dequeue { (cell: TitleTableViewCell) in cell.update(title: title) }
+      return tableView.clean.dequeue { (cell: TitleTableViewCell) in cell.update(title: title) }
     } else {
-      return tableView.reuse.dequeue { (cell: SubtitleTableViewCell) in cell.update(title: title, subtitle: "Opps! It's an odd number!") }
+      return tableView.clean.dequeue { (cell: SubtitleTableViewCell) in cell.update(title: title, subtitle: "Opps! It's an odd number!") }
     }
   }
 

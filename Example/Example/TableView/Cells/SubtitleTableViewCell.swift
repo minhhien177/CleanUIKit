@@ -11,13 +11,13 @@ import CleanUIKit
 
 class SubtitleTableViewCell: UITableViewCell {
 
-  private lazy var titleLabel: UILabel = create(superview: contentView) { label in
+  private lazy var titleLabel: UILabel = contentView.clean.add { label in
     label.snp.makeConstraints { make in
       make.top.left.right.equalToSuperview().inset(16)
     }
   }
 
-  private lazy var subtitleLabel: UILabel = create(superview: contentView) { label in
+  private lazy var subtitleLabel: UILabel = contentView.clean.add { [unowned titleLabel] label in
     label.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom)
       make.left.right.equalTo(titleLabel)
@@ -28,8 +28,8 @@ class SubtitleTableViewCell: UITableViewCell {
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-    titleLabel.clean.appear()
-    subtitleLabel.clean.appear()
+    titleLabel.clean.show()
+    subtitleLabel.clean.show()
   }
 
   required init?(coder aDecoder: NSCoder) {
